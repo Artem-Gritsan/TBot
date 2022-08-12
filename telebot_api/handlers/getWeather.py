@@ -1,6 +1,6 @@
+import os
 from aiogram import types, Dispatcher
 from create_bot import dp
-from config import weather_token
 import requests, datetime
 from keyboards import keyboards_menu
 from  aiogram.dispatcher import FSMContext
@@ -28,7 +28,7 @@ async def cansel_weather(message: types.Message, state: FSMContext):
 
 async def city(message: types.Message):
     get_req = requests.get(
-        f'https://api.openweathermap.org/data/2.5/weather?q={message.text}&appid={weather_token}&units=metric&lang=ru'
+        f'https://api.openweathermap.org/data/2.5/weather?q={message.text}&appid={os.getenv("WEATHER_TOKEN")}&units=metric&lang=ru'
     )
     data = get_req.json()
 
